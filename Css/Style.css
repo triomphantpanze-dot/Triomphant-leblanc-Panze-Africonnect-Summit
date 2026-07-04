@@ -1,0 +1,94 @@
+/* ==========================================================================
+   VARIABLES & DESIGN SYSTEM (Minimum 8 variables)
+   ========================================================================== */
+:root {
+    /* Typographies */
+    --font-heading: 'Cabinet Grotesk', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+
+    /* Palette de couleurs (Thème Clair) */
+    --primary-color: #ff6b35;       /* Orange vibrant africain */
+    --secondary-color: #004e64;     /* Bleu profond technologique */
+    --accent-color: #2ec4b6;        /* Turquoise éclatant */
+    --bg-color: #fafafa;            /* Fond de page général */
+    --surface-color: #ffffff;       /* Fond des éléments isolés (cartes, navbar) */
+    --text-color: #1a1a1a;          /* Texte principal */
+    --text-muted: #6c757d;          /* Texte secondaire ou légendes */
+    --border-color: #e9ecef;        /* Bordures subtiles */
+
+    /* Espacements, Arrondis & Effets */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 32px;
+    --spacing-xl: 64px;
+    --border-radius-sm: 6px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 24px;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Redéfinition des variables pour le Dark Mode via l'attribut data-theme */
+[data-theme="dark"] {
+    --bg-color: #0b0f19;
+    --surface-color: #151f32;
+    --text-color: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #24334d;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.2);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* ==========================================================================
+   RESET CSS & RÈGLES DE BASE
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: var(--transition-smooth);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-smooth);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+/* Classe utilitaire globale pour les transitions obligatoires sur éléments interactifs */
+.btn, .card, .nav-link, .speaker-card {
+    transition: var(--transition-smooth);
+}
