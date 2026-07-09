@@ -442,3 +442,606 @@ button, input, select, textarea {
         font-size: 2rem;
     }
 }
+/* ==========================================================================
+   PAGE 1 : ACCUEIL (INDEX.HTML)
+   ========================================================================== */
+
+/* Animation d'apparition au chargement (Hero) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-section {
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 78, 100, 0.8), rgba(11, 15, 25, 0.9)), 
+                url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.hero-container {
+    max-width: 800px;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    margin-bottom: var(--spacing-md);
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 500;
+}
+
+.cta-group {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Compte à rebours */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.countdown-item {
+    background-color: rgba(21, 31, 50, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    min-width: 90px;
+    backdrop-filter: blur(5px);
+}
+
+.countdown-item span {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.countdown-item small {
+    font-size: 0.8rem;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+/* Section Chiffres Clés (CSS Grid) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.stat-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Section Pourquoi Participer (Flexbox) */
+.features-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-lg);
+}
+
+.feature-item {
+    flex: 1;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.feature-item h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Grilles Intervenants Vedettes & Générale (CSS Grid) */
+.speakers-grid-featured, .speakers-main-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.speaker-card, .speaker-card-main {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Effets Hover interactifs (Ombre + Translation) */
+.speaker-card:hover, .speaker-card-main:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+
+.speaker-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.speaker-info, .speaker-main-details {
+    padding: var(--spacing-md);
+    text-align: center;
+}
+
+.speaker-role, .speaker-specialty {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.speaker-country, .speaker-location {
+    display: inline-block;
+    margin-top: var(--spacing-sm);
+    font-size: 0.8rem;
+    background-color: var(--border-color);
+    padding: 2px var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    color: var(--text-muted);
+}
+
+.center-btn {
+    text-align: center;
+}
+
+/* Section Sponsors (3 Niveaux Flexbox) */
+.sponsors-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.sponsors-level {
+    text-align: center;
+}
+
+.sponsors-level h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.sponsors-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+}
+
+.sponsor-logo {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--text-muted);
+    box-shadow: var(--shadow-sm);
+}
+
+.level-gold .sponsor-logo { width: 220px; height: 100px; font-size: 1.2rem; border-top: 4px solid #ffd700; }
+.level-silver .sponsor-logo { width: 180px; height: 80px; font-size: 1rem; border-top: 4px solid #c0c0c0; }
+.level-bronze .sponsor-logo { width: 140px; height: 60px; font-size: 0.85rem; border-top: 4px solid #cd7f32; }
+
+/* Placeholder pour Intersection Observer */
+.scroll-anim {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.scroll-anim.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   PAGE 2 : PROGRAMME (PROGRAMME.HTML)
+   ========================================================================== */
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.tab-btn {
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.tab-btn.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Tableau Stylisé */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.schedule-table th, .schedule-table td {
+    padding: var(--spacing-md);
+    text-align: left;
+}
+
+.schedule-table th {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    font-family: var(--font-heading);
+}
+
+.schedule-table td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Alternance de couleurs (Striped rows) */
+.schedule-table tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+[data-theme="dark"] .schedule-table tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Section Thématiques (CSS Grid 2x2) */
+.themes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.theme-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.theme-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    display: inline-block;
+}
+
+.theme-card h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   PAGE 3 : INTERVENANTS (INTERVENANTS.HTML)
+   ========================================================================== */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.filter-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border-color: var(--accent-color);
+}
+
+.speakers-main-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes desktop */
+}
+
+/* ==========================================================================
+   PAGE 4 : INSCRIPTION & CONTACT (CONTACT.HTML)
+   ========================================================================== */
+.flex-form-container {
+    display: flex;
+    gap: var(--spacing-xl);
+}
+
+.form-column {
+    flex: 2;
+    background-color: var(--surface-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.info-column {
+    flex: 1;
+    background-color: var(--secondary-color);
+    color: #ffffff;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.info-column h3 { color: #ffffff; margin-bottom: var(--spacing-sm); }
+.info-column p { display: flex; align-items: center; gap: var(--spacing-md); }
+.info-column i { color: var(--accent-color); font-size: 1.2rem; }
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-smooth);
+}
+
+/* Classes pour les retours visuels JS */
+.form-group.success input, .form-group.success select, .form-group.success textarea {
+    border-color: #2ec4b6 !important;
+}
+.form-group.error input, .form-group.error select, .form-group.error textarea {
+    border-color: #e63946 !important;
+}
+
+.error-msg {
+    color: #e63946;
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 4px;
+}
+
+.success-box {
+    background-color: rgba(46, 196, 182, 0.1);
+    color: #2ec4b6;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    border: 1px solid #2ec4b6;
+    margin-top: var(--spacing-md);
+    text-align: center;
+}
+
+.submit-btn {
+    width: 100%;
+}
+
+/* ACCORDÉON FAQ CSS PUR (ZÉRO JS) */
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+
+.faq-toggle {
+    display: none; /* Masque la case à cocher */
+}
+
+.faq-header {
+    display: block;
+    padding: var(--spacing-md);
+    font-weight: 600;
+    cursor: pointer;
+    background-color: var(--surface-color);
+    position: relative;
+    user-select: none;
+}
+
+.faq-header::after {
+    content: '+';
+    position: absolute;
+    right: var(--spacing-md);
+    font-size: 1.2rem;
+    transition: var(--transition-smooth);
+}
+
+.faq-content {
+    max-height: 0; /* Caché par défaut */
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+    padding: 0 var(--spacing-md);
+    background-color: var(--bg-color);
+    color: var(--text-muted);
+}
+
+/* Sélecteur CSS intelligent pour l'ouverture au clic */
+.faq-toggle:checked ~ .faq-content {
+    max-height: 200px; /* S'ouvre avec transition */
+    padding: var(--spacing-md);
+}
+
+.faq-toggle:checked ~ .faq-header::after {
+    content: '-';
+    transform: rotate(180deg);
+}
+
+/* Carte Google Maps */
+.map-section {
+    margin-top: var(--spacing-xl);
+}
+.map-container iframe {
+    display: block;
+}
+
+/* ==========================================================================
+   RESPONSIVE SUR-MESURE COMPOSANTS
+   ========================================================================== */
+
+/* TABLETTE (768px et moins) */
+@media screen and (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .features-flex {
+        flex-direction: column;
+    }
+    .speakers-grid-featured {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .speakers-main-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes tablette */
+    }
+    .themes-grid {
+        grid-template-columns: 1fr;
+    }
+    .flex-form-container {
+        flex-direction: column;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* MOBILE (375px et moins) */
+@media screen and (max-width: 375px) {
+    .stats-grid, .speakers-grid-featured, .speakers-main-grid {
+        grid-template-columns: 1fr; /* 1 colonne mobile */
+    }
+    .countdown {
+        flex-wrap: wrap;
+    }
+    .countdown-item {
+        min-width: 70px;
+    }
+    .cta-group {
+        flex-direction: column;
+    }
+}
+/* S'assure que la section s'affiche correctement même sans l'animation JavaScript */
+.stats-section.scroll-anim,
+.features-section.scroll-anim,
+.speakers-featured.scroll-anim,
+.sponsors-section.scroll-anim {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Container de l'image de l'intervenant pour simuler un espace photo */
+.speaker-img-container {
+    width: 100%;
+    height: 280px;
+    background-color: #e2e8f0; /* Fond gris clair de secours */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .speaker-img-container {
+    background-color: #1e293b; /* Fond gris foncé en mode sombre */
+}
+
+/* Style de l'image */
+.speaker-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+}
+
+/* Texte indicatif en arrière-plan si l'image met du temps à charger */
+.speaker-img-container::before {
+    content: "📷 Emplacement Photo";
+    position: absolute;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    z-index: 1;
+}
