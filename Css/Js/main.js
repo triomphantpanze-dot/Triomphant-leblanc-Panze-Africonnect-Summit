@@ -245,3 +245,109 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+    // ==========================================================================
+    // 9. VALIDATION DU FORMULAIRE D'INSCRIPTION (PAGE CONTACT.HTML)
+    // ==========================================================================
+    const registrationForm = document.getElementById('registrationForm');
+
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Empêche l'envoi réel du formulaire pour la validation
+
+            // Récupération des champs
+            const fullName = document.getElementById('fullName');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+            const ticketType = document.getElementById('ticketType');
+            const country = document.getElementById('country');
+            const motivation = document.getElementById('motivation');
+            const successMessage = document.getElementById('successMessage');
+
+            let isValid = true;
+
+            // Fonction utilitaire pour afficher une erreur
+            const showError = (inputElement, errorSpanId, message) => {
+                const errorSpan = document.getElementById(errorSpanId);
+                inputElement.parentElement.classList.add('error');
+                inputElement.parentElement.classList.remove('success');
+                if (errorSpan) {
+                    errorSpan.textContent = message;
+                    errorSpan.style.display = 'block';
+                }
+                isValid = false;
+            };
+
+            // Fonction utilitaire pour valider un champ
+            const showSuccess = (inputElement, errorSpanId) => {
+                const errorSpan = document.getElementById(errorSpanId);
+                inputElement.parentElement.classList.add('success');
+                inputElement.parentElement.classList.remove('error');
+                if (errorSpan) {
+                    errorSpan.textContent = '';
+                    errorSpan.style.display = 'none';
+                }
+            };
+
+            // 1. Validation du Nom Complet
+            if (fullName.value.trim() === '') {
+                showError(fullName, 'nameError', 'Le nom complet est obligatoire.');
+            } else {
+                showSuccess(fullName, 'nameError');
+            }
+
+            // 2. Validation de l'Email (Regex standard)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value.trim())) {
+                showError(email, 'emailError', 'Veuillez entrer une adresse email valide.');
+            } else {
+                showSuccess(email, 'emailError');
+            }
+
+            // 3. Validation du Téléphone (Minimum 8 chiffres)
+            const phoneRegex = /^\d{8,}$/;
+            if (!phoneRegex.test(phone.value.trim().replace(/\s/g, ''))) {
+                showError(phone, 'phoneError', 'Le numéro doit contenir au moins 8 chiffres.');
+            } else {
+                showSuccess(phone, 'phoneError');
+            }
+
+            // 4. Validation du Type de Ticket
+            if (ticketType.value === '') {
+                showError(ticketType, 'ticketError', 'Veuillez sélectionner un type de ticket.');
+            } else {
+                showSuccess(ticketType, 'ticketError');
+            }
+
+            // 5. Validation du Pays
+            if (country.value === '') {
+                showError(country, 'countryError', 'Veuillez sélectionner votre pays de résidence.');
+            } else {
+                showSuccess(country, 'countryError');
+            }
+
+            // 6. Validation des Motivations (Minimum 20 caractères)
+            if (motivation.value.trim().length < 20) {
+                showError(motivation, 'motivationError', 'Votre message doit contenir au moins 20 caractères.');
+            } else {
+                showSuccess(motivation, 'motivationError');
+            }
+
+            // Si tout est valide, on affiche le message de succès global
+            if (isValid) {
+                successMessage.textContent = `Félicitations ${fullName.value.trim()}, votre demande d'inscription a bien été prise en compte !`;
+                successMessage.style.display = 'block';
+                
+                // Réinitialiser le formulaire après l'envoi réussi
+                registrationForm.reset();
+                
+                // Retirer les classes de succès visuelles après 5 secondes
+                setTimeout(() => {
+                    const formGroups = registrationForm.querySelectorAll('.form-group');
+                    formGroups.forEach(group => group.classList.remove('success'));
+                    successMessage.style.display = 'none';
+                }, 5000);
+            } else {
+                successMessage.style.display = 'none';
+            }
+        });
+    }
