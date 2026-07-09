@@ -114,3 +114,134 @@ document.addEventListener('DOMContentLoaded', () => {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 });
+// ==========================================================================
+    // 5. COMPTE À REBOURS DYNAMIQUE (HERO SECTION)
+    // ==========================================================================
+    const countdownElement = document.getElementById('countdown');
+    if (countdownElement) {
+        const targetDateStr = countdownElement.getAttribute('data-date');
+        const targetDate = new Date(targetDateStr).getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                countdownElement.innerHTML = "<div class='countdown-live'>Le sommet a commencé !</div>";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            // Calcul des jours, heures, minutes et secondes
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Affichage avec formatage à deux chiffres (ex: 09 au lieu de 9)
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        };
+
+        // Lancer immédiatement et actualiser chaque seconde
+        updateCountdown();
+        const countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    // ==========================================================================
+    // 6. ANIMATION PROGRESSIVE DES CHIFFRES CLÉS (COMPTEURS DYNAMIQUES)
+    // ==========================================================================
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    const animateCounters = (counterElement) => {
+        const target = +counterElement.getAttribute('data-target');
+        const duration = 2000; // Durée de l'animation en millisecondes
+        const stepTime = Math.max(Math.floor(duration / target), 15);
+        let currentCount = 0;
+
+        const timer = setInterval(() => {
+            currentCount += Math.ceil(target / (duration / stepTime));
+            if (currentCount >= target) {
+                // Ajouter le symbole '+' pour le design si c'est le nombre de participants
+                counterElement.textContent = target === 1200 ? `+${target}` : target;
+                clearInterval(timer);
+            } else {
+                counterElement.textContent = target === 1200 ? `+${currentCount}` : currentCount;
+            }
+        }, stepTime);
+    };
+
+    // Utilisation de l'Intersection Observer pour déclencher l'animation au défilement
+    if ('IntersectionObserver' in window && statNumbers.length > 0) {
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters(entry.target);
+                    observer.unobserve(entry.target); // Annule l'observation une fois animé
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(stat => statsObserver.observe(stat));
+    } else {
+        // Mode de secours si l'Observer n'est pas supporté par le navigateur
+        statNumbers.forEach(stat => {
+            const target = stat.getAttribute('data-target');
+            stat.textContent = target === '1200' ? `+${target}` : target;
+        });
+    }
+
+    // ==========================================================================
+    // 7. SYSTÈME D'ONGLETS INTERACTIFS (PAGE PROGRAMME.HTML)
+    // ==========================================================================
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    if (tabButtons.length > 0 && tabPanels.length > 0) {
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+
+                // Désactiver tous les boutons et masquer tous les panneaux
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+
+                // Activer le bouton cliqué et afficher le panneau correspondant
+                button.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+    }
+
+    // ==========================================================================
+    // 8. FILTRAGE DYNAMIQUE DES INTERVENANTS (PAGE INTERVENANTS.HTML)
+    // ==========================================================================
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const speakerCards = document.querySelectorAll('.speaker-card-main');
+
+    if (filterButtons.length > 0 && speakerCards.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterValue = button.getAttribute('data-filter');
+
+                // Mettre à jour l'état actif des boutons de filtre
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filtrer les cartes avec un effet visuel de transition
+                speakerCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => { card.style.opacity = '1'; }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
