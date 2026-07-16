@@ -1130,7 +1130,7 @@ button, input, select, textarea {
     font-size: 0.9rem;
 }
 
-/* Bouton flottant de retour rapide */
+/* Bouton de retour en haut */
 .scroll-top-btn {
     position: fixed;
     bottom: var(--spacing-lg);
@@ -1161,4 +1161,34 @@ button, input, select, textarea {
 .scroll-top-btn:hover {
     background-color: var(--secondary-color);
     transform: translateY(-3px);
+}
+.main-footer {
+    background-color: #111827; /* Une couleur sombre fixe (Bleu nuit/Anthracite) */
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    position: relative;
+    margin-top: var(--spacing-xl, 3rem);
+    width: 100%;
+}
+
+/* On s'assure également que les textes du footer ressortent bien sur le fond sombre */
+.footer-col h4 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-md, 1.5rem);
+    color: #ffffff; /* Texte des titres en blanc */
+    font-family: var(--font-heading);
+}
+
+.footer-col p {
+    color: #9ca3af; /* Texte descriptif en gris clair */
+    line-height: 1.6;
+}
+
+.footer-col ul a {
+    color: #9ca3af; /* Liens en gris clair */
+    transition: var(--transition-smooth, 0.3s);
+}
+
+.footer-col ul a:hover {
+    color: #ff6b35; /* Couleur principale orange au survol */
+    padding-left: 4px;
 }
